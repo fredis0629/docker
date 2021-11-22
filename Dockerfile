@@ -1,4 +1,4 @@
-FROM node:alpine as build
+FROM node:16.13.0 as build
 ARG PORT
 WORKDIR /usr/src/app
 COPY . ./
