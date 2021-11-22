@@ -27,6 +27,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/docker_homework:latest
+          build-args: PORT=${{ secrets.SERVER_PORT }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -39,5 +40,5 @@ jobs:
             docker rm ${{ secrets.SERVER_USERNAME }}
             docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/docker_homework:latest
-            docker run -p ${{ secrets.SERVER_PORT }}:80 -d --name=${{ secrets.SERVER_USERNAME }} ${{ secrets.DOCKER_HUB_USERNAME }}/docker_homework:latest
+            docker run -d --name=${{ secrets.SERVER_USERNAME }} ${{ secrets.DOCKER_HUB_USERNAME }}/docker_homework:latest
             docker logout
