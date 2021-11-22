@@ -1,5 +1,6 @@
 {
   "name": "docker",
+  "homepage": "http://173.82.227.13/petro_kroialo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
